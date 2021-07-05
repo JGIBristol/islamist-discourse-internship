@@ -42,17 +42,20 @@ The structure of the directory is as follows, not all of this is available throu
 
 1. If you don't have one already, create a GitHub account](https://github.com/join) and make sure that you have Python installed (for example, through Anaconda).
 1. Open a terminal on your computer.
-2. Git clone this repository.
+2. [Git clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) this repository.
 3. Go to the cloned repository and create new folders for `data`, `data/created`, `data/original`, etc.
 4. Go to [this Sharepoint directory](https://uob-my.sharepoint.com/:f:/r/personal/fd17626_bristol_ac_uk/Documents/Text-Mining%20Project?csf=1&web=1&e=6vj49M) and download the data into the `data/orginal` directory you just created and rename the two csv files to `arabic_corpus.csv` and `english_corpus.csv`.
 5. Make these files read only, so you don't accidentally overwrite anything in them.
+6. Install the packages in the `requirements.txt` file using `pip install requirements.txt` or `conda install --file requirements.txt` if you're using Anaconda.
 
 ### How to make changes
 
-1. Find the GitHub issue, or make a new GitHub issue for the task that you're planning on working on, and assign it to yourself to let us know you're working on it. You can also comment on this issue (and tag me @nataliethurlby) to let me know if you need to ask any questions at any point.git
-2. Fork the main branch of the repository to create your own copy. 
+1. Find the GitHub issue, or make a new GitHub issue for the task that you're planning on working on, and assign it to yourself and comment on it to let us know you're working on it. You can also comment on this issue (and tag me @nataliethurlby) which will notify me if you need to ask any questions at any point.
+2. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the main branch of the repository to create your own copy. 
 3. Create a new branch for the new feature that you're working on. 
 3. Work on your local branch to make changes, commiting and pushing frequently.
+    - Note: If you use a new Python package in your code, add it to the `requirements.txt` file
 3. When you have made some progress, e.g. got tokenisation working, make a Pull Request, and ask for a review. This will let us know about the change that you've made and we can "pull in" the work that you've done to the main repository. It's good to do this little and often.
 4. I will approve the pull request, or ask for some small changes. If small changes, make the changes, then let me know when you're finished. 
 5. Success!
+
