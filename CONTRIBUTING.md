@@ -42,5 +42,5 @@ The structure of the directory is as follows, not all of this is available throu
 1. Open a terminal on your computer.
 2. Git clone this repository.
 3. Go to the cloned repository and create new folders for `data`, `data/created`, `data/original`, etc.
-4. Go to [this Sharepoint directory]() and download the data into the `data/orginal` directory you just created. 
+4. Go to [this Sharepoint directory](https://uob-my.sharepoint.com/:f:/r/personal/fd17626_bristol_ac_uk/Documents/Text-Mining%20Project?csf=1&web=1&e=6vj49M) and download the data into the `data/orginal` directory you just created. 
 5. After downloading, make these files read only, so you don't accidentally overwrite anything in them.
