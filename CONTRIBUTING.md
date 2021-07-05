@@ -41,13 +41,12 @@ The structure of the directory is as follows, not all of this is available throu
 ### How to set up your computer
 
 1. If you don't have one already, create a [GitHub account](https://github.com/join) and make sure that you have Python installed (for example, through Anaconda).
-1. Open a terminal on your computer.
 3. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the main branch of the repository to create your own copy. 
-2. [Git clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) your fork of the repository to your local machine.
-3. Go to the cloned repository and create new folders for `data`, `data/created`, `data/original`, etc.
-4. Go to [this Sharepoint directory](https://uob-my.sharepoint.com/:f:/r/personal/fd17626_bristol_ac_uk/Documents/Text-Mining%20Project?csf=1&web=1&e=6vj49M) and download the data into the `data/orginal` directory you just created and rename the two csv files to `arabic_corpus.csv` and `english_corpus.csv`.
-5. Make these files read only, so you don't accidentally overwrite anything in them.
-6. Install the packages in the `requirements.txt` file using `pip install requirements.txt` or `conda install --file requirements.txt` if you're using Anaconda.
+3. Open a terminal on your computer and [Git clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) your fork of the repository to your local machine.
+5. Go to the cloned repository and create new folders for `data`, `data/created`, `data/original`, etc.
+6. Go to [this Sharepoint directory](https://uob-my.sharepoint.com/:f:/r/personal/fd17626_bristol_ac_uk/Documents/Text-Mining%20Project?csf=1&web=1&e=6vj49M) and download the data into the `data/orginal` directory you just created and rename the two csv files to `arabic_corpus.csv` and `english_corpus.csv`.
+7. Make these files read only, so you don't accidentally overwrite anything in them.
+8. Install the packages in the `requirements.txt` file using `pip install requirements.txt` or `conda install --file requirements.txt` if you're using Anaconda.
 
 ### How to make changes
 
