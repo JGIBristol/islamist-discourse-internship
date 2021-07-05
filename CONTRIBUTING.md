@@ -42,7 +42,8 @@ The structure of the directory is as follows, not all of this is available throu
 
 1. If you don't have one already, create a GitHub account](https://github.com/join) and make sure that you have Python installed (for example, through Anaconda).
 1. Open a terminal on your computer.
-2. [Git clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) this repository.
+3. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the main branch of the repository to create your own copy. 
+2. [Git clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) your fork of the repository to your local machine.
 3. Go to the cloned repository and create new folders for `data`, `data/created`, `data/original`, etc.
 4. Go to [this Sharepoint directory](https://uob-my.sharepoint.com/:f:/r/personal/fd17626_bristol_ac_uk/Documents/Text-Mining%20Project?csf=1&web=1&e=6vj49M) and download the data into the `data/orginal` directory you just created and rename the two csv files to `arabic_corpus.csv` and `english_corpus.csv`.
 5. Make these files read only, so you don't accidentally overwrite anything in them.
@@ -51,11 +52,11 @@ The structure of the directory is as follows, not all of this is available throu
 ### How to make changes
 
 1. Find the GitHub issue, or make a new GitHub issue for the task that you're planning on working on, and assign it to yourself and comment on it to let us know you're working on it. You can also comment on this issue (and tag me @nataliethurlby) which will notify me if you need to ask any questions at any point.
-2. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the main branch of the repository to create your own copy. 
+2. Make sure that your fork is up to date with the main repository, by [syncing your fork](https://docs.github.com/en/github/collaborating-with-pull-requests/working-with-forks/syncing-a-fork).
 3. Create a new branch for the new feature that you're working on. 
 3. Work on your local branch to make changes, commiting and pushing frequently.
     - Note: If you use a new Python package in your code, add it to the `requirements.txt` file
 3. When you have made some progress, e.g. got tokenisation working, make a Pull Request, and ask for a review. This will let us know about the change that you've made and we can "pull in" the work that you've done to the main repository. It's good to do this little and often.
 4. I will approve the pull request, or ask for some small changes. If small changes, make the changes, then let me know when you're finished. 
-5. Success!
+5. Success! [Delete your old branch](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#deleting-a-branch) from your Fork now that you no longer need it.
 
