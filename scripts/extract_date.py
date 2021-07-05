@@ -9,7 +9,7 @@ import re
 from dateutil import parser
 
 # Reads CSV file of original data:
-df = pd.read_csv('../data/original/original_data.csv', sep=',')
+df = pd.read_csv('../data/original/arabic_corpus.csv', sep=',')
 
 title_col = 'Title'
 date_col = 'Date_of_Publication'
