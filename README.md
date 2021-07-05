@@ -16,7 +16,7 @@ Later, we hope to bring this code into Filippo's Orange workflow to form part of
 
 ### Team
 
-| Team Member | Role | Responsibilities |
+| Team Member | Role | Internship Responsibilities |
 | ------------| ---- | ---------------- |
 | Filippo Dionigi | Principal Investigator | Providing data and advising on Arabic language and Middle Eastern politics. |
 | Natalie Thurlby | Data Scientist, Jean Golding Institute | Advising on text analysis, reproducibility, and research software engineering best practices. |
