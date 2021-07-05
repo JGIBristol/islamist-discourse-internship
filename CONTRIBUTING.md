@@ -23,7 +23,7 @@ The structure of the directory is as follows, not all of this is available throu
 | `data/created` | All newly created/processed data is stored in this directory |
 | `data/created/arabic_corpus.csv` | Arabic script speeches |
 | `data/created/english_corpus.csv` | Speeches translated into English |
-| `data/original` | All original data should be stored in this directory (and the files should be [made read-only](#protect-original-data).
+| `data/original` | All original data should be stored in this directory (and the files should be made read-only. |
 | `figures/` | This is where we will store figures |
 | `misc/` | Contains miscellaneous documents relating to the project that we don't want to upload to GitHub, like timesheets, CVs, etc. |
 | `scripts/` | Contains Python scripts. Each script has a docstring explaining what it does at the top of the file. |
