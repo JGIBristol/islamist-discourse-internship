@@ -40,7 +40,7 @@ The structure of the directory is as follows, not all of this is available throu
 
 ### How to set up your computer
 
-1. If you don't have one already, create a GitHub account](https://github.com/join) and make sure that you have Python installed (for example, through Anaconda).
+1. If you don't have one already, create a [GitHub account](https://github.com/join) and make sure that you have Python installed (for example, through Anaconda).
 1. Open a terminal on your computer.
 3. [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) the main branch of the repository to create your own copy. 
 2. [Git clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) your fork of the repository to your local machine.
