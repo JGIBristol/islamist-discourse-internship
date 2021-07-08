@@ -1,0 +1,10 @@
+2021-07-08 14:07:16,802:INFO:Beginning creating date for Arabic corpus
+2021-07-08 14:07:17,089:WARNING:Could not parse date string 22/5 from title 'كلمة الأمين العام لحزب الله سماحة السيد حسن نصر الله بمناسبة يوم القدس العالمي 22/5/ 2020' on row 285. Check input file and rerun or correct manually.
+2021-07-08 14:07:17,108:INFO:Finds 417 out of 423 dates.
+2021-07-08 14:07:17,108:INFO:Fixing row 285
+2021-07-08 14:07:17,436:INFO:Finished creating date for Arabic corpus
+2021-07-08 14:07:17,439:INFO:Beginning creating date for English corpus
+2021-07-08 14:07:17,527:WARNING:Could not parse date string 22-09 from title 'Hizbullah SG Full Speech on on 22-09- 2006' on row 3. Check input file and rerun or correct manually.
+2021-07-08 14:07:17,545:INFO:Finds 69 out of 214 dates.
+2021-07-08 14:07:17,546:INFO:Fixing row 3
+2021-07-08 14:07:17,772:INFO:Finished creating date for English corpus
