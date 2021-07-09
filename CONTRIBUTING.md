@@ -59,3 +59,6 @@ The structure of the directory is as follows, not all of this is available throu
 4. I will approve the pull request, or ask for some small changes. If small changes, make the changes, then let me know when you're finished. 
 5. Success! [Delete your old branch](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#deleting-a-branch) from your Fork now that you no longer need it.
 
+----
+Notes:
+- Be careful what you commit to logfiles as these are tracked by GitHub
