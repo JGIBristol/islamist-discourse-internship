@@ -5,11 +5,9 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 import pandas as pd
 
-df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv/english_corpus.csv', sep = '\n' or ',', skiprows = 3)
+df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv/english_corpus.csv', index_col = False, sep = ',')
 
-print(df)
 
-print(df.loc[0][0])
 
 
 def SplitText(text):
@@ -33,4 +31,10 @@ def MeaninglessWords(text):
 def Lemmatization(x):
     return 0
 
-print(MeaninglessWords(df.loc[0][0]))
+
+bagofwords = []
+
+for i, row in df.iterrows():
+    if not pd.isna(row["Text"]):
+        bagofwords += SplitText(row["Text"])
+print(len(bagofwords))
