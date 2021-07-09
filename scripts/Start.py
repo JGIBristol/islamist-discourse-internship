@@ -5,7 +5,6 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 import pandas as pd
 
-df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv/english_corpus.csv', index_col = False, sep = ',')
 
 
 
@@ -32,9 +31,27 @@ def Lemmatization(x):
     return 0
 
 
-bagofwords = []
 
-for i, row in df.iterrows():
-    if not pd.isna(row["Text"]):
-        bagofwords += SplitText(row["Text"])
-print(len(bagofwords))
+        
+def RunEnglishText(debug = False):
+    '''
+    Run whole processing pipeline, Main function.
+    '''
+    
+    df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv/english_corpus.csv', index_col = False, sep = ',')
+    
+    bagofwords = []
+    
+    for i, row in df.iterrows():
+        if i > 100 and debug == True:
+            break
+        
+        if not pd.isna(row["Text"]):
+            bagofwords += SplitText(row["Text"])
+            
+    print(len(bagofwords))
+    
+    return None
+
+
+RunEnglishText(debug = True)
