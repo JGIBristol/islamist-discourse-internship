@@ -6,13 +6,11 @@ from nltk.stem import WordNetLemmatizer
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import warnings
+import sys
+from nltk.corpus import wordnet
+from nltk import pos_tag
 
-
-
-
-def SplitText(text):
-    #Input string output list splits text in an array
-    return word_tokenize(text)
 
 def Lowercase(text):
     #Lowercase every word in a text input string output string
@@ -26,26 +24,64 @@ def RemovePunctuation(text):
             output += text[i]
     return output
             
-def MeaninglessWords(text):
+def MeaninglessWords(array):
     #Removes meaningless words input string output string
     meaningless = stopwords.words('english')
-    words = SplitText(text)
-    return ' '.join([i for i in words if i not in meaningless])
+    
+    return [i for i in array if i not in meaningless]
+
+    
+
+def SplitText(text):
+    #Input string output list splits text in an array
+    return word_tokenize(text)
+
+
 
 def Lemmatization(array):
     #Lemmatizes each word in an array
     lemmatizer = WordNetLemmatizer()
+    dictionary = {"V" : wordnet.VERB, "J" : wordnet.ADJ, "N" : wordnet.NOUN, "R" : wordnet.ADV}
+    
+    ReplaceDict = {"lebanese" : "lebanon"}
+    
     new = []
-    for i in array:
-        new.append(lemmatizer.lemmatize(i))
+    tags = pos_tag(array)
+
+    for index, word in enumerate(array):
+        tag = tags[index][1]
+        if word in ReplaceDict:
+            word = ReplaceDict[word]
+            
+        if tag[0] in dictionary:
+            
+            new.append(lemmatizer.lemmatize(word, pos = dictionary[tag[0]]))
         
+        else:
+            
+            new.append(lemmatizer.lemmatize(word))
+
+            
+
+    
     return new
 
 
-def FrequentWords(text):
+
+
+
+def FrequentWords(array):
+    try: 
+        assert(type(array) == list)
+        
+    except AssertionError:
+        
+        warnings.warn(f"Expecting a list, recieved {type(array)} instead")
+        
+        raise TypeError
+
     #Counts the amount of times each word is mentioned, creates a dictionary.
     count = 0
-    array = SplitText(text)
     UniqueWords = {i : 0 for i in array}
     for i in UniqueWords:
         for j in array:
@@ -53,8 +89,10 @@ def FrequentWords(text):
                 count += 1
         UniqueWords[i] = count
         count = 0
-    return UniqueWords
+        
+    return sorted([(i, UniqueWords[i]) for i in UniqueWords], key = lambda x : x[1])
     
+
 
 def Graph(diction):
     x = np.array([i for i in range(len(diction))])
@@ -64,7 +102,30 @@ def Graph(diction):
     plt.xticks(x, xmap)
     plt.plot(x, y)
     plt.show()
+    
+def ProcessSpeach(text):
+    #Run each function above in order on each text, returns lemmatizatization of text
+    try:
+        
+        assert(type(text) == str)
+        
+    except AssertionError:
+        
+        warnings.warn(f"Expecting a string, recieved {typer(text)} instead")
+        
+        raise TypeError
+    
+    text = Lowercase(text)
+    text = RemovePunctuation(text)
+    array = SplitText(text)
+    array = Lemmatization(array)
+    array = MeaninglessWords(array)
+    
+    
 
+    
+    return array
+    
         
 def RunEnglishText(debug = False):
     '''
@@ -76,19 +137,22 @@ def RunEnglishText(debug = False):
     
     bagofwords = []
     for i, row in df.iterrows():
-        if i > 100 and debug == True:
+        if i > 10 and debug == True:
             break
         
         if not pd.isna(row["Text"]):
-            bagofwords += SplitText(row["Text"])
             
-    words = Lemmatization(bagofwords)
-    print(FrequentWords(words)[:10])
-    text = " ".join(words)
-
-    #MeaningfulText = MeaninglessWords(RemovePunctuation(Lowercase(text)))
+            bagofwords += ProcessSpeach(row["Text"])
+            break
     
-    #MostFreqWords = FrequentWords(MeaningfulText)
+    
+    print(FrequentWords(bagofwords[:300]))
+            
+    
+    
+    
+    
+
     
     return None
 
