@@ -10,7 +10,6 @@ import numpy as np
 
 
 
-
 def SplitText(text):
     #Input string output list splits text in an array
     return word_tokenize(text)
@@ -33,11 +32,18 @@ def MeaninglessWords(text):
     words = SplitText(text)
     return ' '.join([i for i in words if i not in meaningless])
 
-def Lemmatization(x):
-    return 0
+def Lemmatization(array):
+    #Lemmatizes each word in an array
+    lemmatizer = WordNetLemmatizer()
+    new = []
+    for i in array:
+        new.append(lemmatizer.lemmatize(i))
+        
+    return new
 
 
 def FrequentWords(text):
+    #Counts the amount of times each word is mentioned, creates a dictionary.
     count = 0
     array = SplitText(text)
     UniqueWords = {i : 0 for i in array}
@@ -75,13 +81,14 @@ def RunEnglishText(debug = False):
         
         if not pd.isna(row["Text"]):
             bagofwords += SplitText(row["Text"])
-    print(type(bagofwords))
-    text = " ".join(bagofwords)
-    LowerText = Lowercase(text)
-    PunctText = RemovePunctuation(LowerText)
-    MeaningfulText = MeaninglessWords(PunctText)
-    MostFreqWords = FrequentWords(MeaningfulText)
+            
+    words = Lemmatization(bagofwords)
+    print(FrequentWords(words)[:10])
+    text = " ".join(words)
 
+    #MeaningfulText = MeaninglessWords(RemovePunctuation(Lowercase(text)))
+    
+    #MostFreqWords = FrequentWords(MeaningfulText)
     
     return None
 
