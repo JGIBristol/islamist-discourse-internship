@@ -115,8 +115,6 @@ def Lemmatization(array):
 
 
 
-
-
 def FrequentWords(array):
     #pandas, valuecounts 
     
@@ -233,7 +231,7 @@ def RunEnglishText(debug = False):
     find most frequent words
     '''
     
-    df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv/english_corpus.csv', index_col = False, sep = ',')
+    df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv', index_col = False, sep = ',')
     
     bagofwords = []
     for i, row in df.iterrows():
