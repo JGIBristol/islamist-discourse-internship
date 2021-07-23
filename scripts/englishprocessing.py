@@ -13,6 +13,7 @@ from nltk import pos_tag
 
 
 def Lowercase(text):
+
     try:
         
         assert(type(text) == str)
@@ -117,6 +118,8 @@ def Lemmatization(array):
 
 
 def FrequentWords(array):
+    #pandas, valuecounts 
+    
     try: 
         assert(type(array) == list)
         
@@ -140,13 +143,65 @@ def FrequentWords(array):
     
 
 
-def Graph(output):
-    x, y = zip(*output)
+def FrequencyGraph(frequency, graphfile, numwords = 20):
+    """
+    Creates a frequency graph and saves it to a location.
+    
+    Parameters
+    ----------
+    frequency : list of tuples
+    First element is the word and second element is the frequency of the word.
+    
+    graphfile : string
+    path to where we save the graph
+    
+    numwords : int
+    number of words we want to go through
+
+    Returns
+    -------
+    None.
+    
+    
+    todo : label graph 
+    """
+    
+    x, y = zip(*frequency[-numwords:])
     plt.plot(x, y)
     plt.xticks(x, x, rotation='vertical')
     plt.margins(0.1)
     plt.subplots_adjust(bottom=0.15)
-    plt.show()
+    plt.savefig(graphfile, bbox_inches='tight')
+    
+    return None
+    
+
+def outputfrequencies(frequencies, freqfile, numwords = 100):
+    """
+    Creates a frequency csv file and saves it to a location.
+    
+    Parameters
+    ----------
+    frequencies : list of tuples
+        First element is the word and second element is the frequency of the word
+        .
+    freqfile : string
+        path to where we save the csv file.
+    numwords : int
+        number of words we want to go through.
+        
+        
+    todo : opposite order sorted
+
+    Returns
+    -------
+    None.
+
+    """
+    df = pd.DataFrame(frequencies[-numwords:], columns = ["Words", "Frequencies"])
+    df.to_csv(freqfile)
+    
+    return None
     
     
 def ProcessSpeach(text):
@@ -192,14 +247,13 @@ def RunEnglishText(debug = False):
             
     
     
-    print(len(FrequentWords(bagofwords)))
     
-    print(Graph(FrequentWords(bagofwords)[-20:]))
+    #print(FrequencyGraph(FrequentWords(bagofwords)[-20:]))
             
     
 
     
-    return None
+    return FrequentWords(bagofwords)
 
 
 RunEnglishText(debug = True)

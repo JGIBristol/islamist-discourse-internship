@@ -4,3 +4,5 @@ misc/
 .idea/
 .DS_Store
 .ipynb_checkpoints/
+fig/
+scripts/__pycache__/
