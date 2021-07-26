@@ -13,6 +13,20 @@ from nltk import pos_tag
 
 
 def Lowercase(text):
+    """
+    Takes in a string and returns the same string with letters all lowercase
+
+    Parameters
+    ----------
+    text : String
+        Text of each speach.
+
+    Returns
+    -------
+    String
+        Lowercase of the text input.
+
+    """
 
     try:
         
@@ -20,20 +34,36 @@ def Lowercase(text):
         
     except AssertionError:
         
-        warnings.warn(f"Expecting a string, recieved {typer(text)} instead")
+        warnings.warn(f"Expecting a string, recieved {type(text)} instead")
         
         raise TypeError
     #Lowercase every word in a text input string output string
     return text.lower()
 
+
+
 def RemovePunctuation(text):
+    """
+    A function that takes in a string and removes the punctuation of the text
+
+    Parameters
+    ----------
+    text : String
+        Text of each speach.
+
+    Returns
+    -------
+    String
+        Text without punctuation.
+
+    """
     try:
         
         assert(type(text) == str)
         
     except AssertionError:
         
-        warnings.warn(f"Expecting a string, recieved {typer(text)} instead")
+        warnings.warn(f"Expecting a string, recieved {type(text)} instead")
         
         raise TypeError
     #Removes punctuation input string output string
@@ -42,15 +72,32 @@ def RemovePunctuation(text):
         if text[i] not in string.punctuation:
             output += text[i]
     return output
+
+
             
 def MeaninglessWords(array):
+    """
+    A function that takes in a list of words and outputs the same list of words
+    but removes the meaningless words we dont want
+
+    Parameters
+    ----------
+    array : List
+        List of words for each speach.
+
+    Returns
+    -------
+    list
+        List of words we want.
+
+    """
     try:
         
         assert(type(array) == list)
         
     except AssertionError:
         
-        warnings.warn(f"Expecting a array, recieved {typer(array)} instead")
+        warnings.warn(f"Expecting a array, recieved {type(array)} instead")
         
         raise TypeError
     #Removes meaningless words input string output string
@@ -62,13 +109,28 @@ def MeaninglessWords(array):
     
 
 def SplitText(text):
+    """
+    A function that takes a string as a input and tokanizes the text
+    
+    Parameters
+    ----------
+    text : String
+        String of text.
+
+
+    Returns
+    -------
+    List
+        Tokanized version of the text.
+
+    """
     try:
         
         assert(type(text) == str)
         
     except AssertionError:
         
-        warnings.warn(f"Expecting a string, recieved {typer(text)} instead")
+        warnings.warn(f"Expecting a string, recieved {type(text)} instead")
         
         raise TypeError
     #Input string output list splits text in an array
@@ -77,13 +139,27 @@ def SplitText(text):
 
 
 def Lemmatization(array):
+    """
+    A function that lemmatizes the list of words, taking words to their root meaning
+
+    Parameters
+    ----------
+    array : List
+        List of words.
+
+    Returns
+    -------
+    new : List
+        List of words that have been lemmatized.
+
+    """
     try:
         
         assert(type(array) == list)
         
     except AssertionError:
         
-        warnings.warn(f"Expecting a string, recieved {typer(array)} instead")
+        warnings.warn(f"Expecting a string, recieved {type(array)} instead")
         
         raise TypeError
         
@@ -91,7 +167,10 @@ def Lemmatization(array):
     lemmatizer = WordNetLemmatizer()
     dictionary = {"V" : wordnet.VERB, "J" : wordnet.ADJ, "N" : wordnet.NOUN, "R" : wordnet.ADV}
     
-    ReplaceDict = {"lebanese" : "lebanon"}
+    ReplaceDict = {"lebanese" : "lebanon", 
+                   "israeli" : "israel",
+                   "syrian" : "syria"
+                   }
     
     new = []
     tags = pos_tag(array)
@@ -116,6 +195,24 @@ def Lemmatization(array):
 
 
 def FrequentWords(array):
+    """
+    
+    Counts the amount of times each word is mentioned in a list of words.
+
+    Parameters
+    ----------
+    array : List
+        List of words.
+
+
+    Returns
+    -------
+    List
+        List of touples that has a word on the first element and amount of times
+        the word is repeated in the list of words.
+
+    """
+    
     #pandas, valuecounts 
     
     try: 
@@ -126,7 +223,8 @@ def FrequentWords(array):
         warnings.warn(f"Expecting a list, recieved {type(array)} instead")
         
         raise TypeError
-
+        
+        
     #Counts the amount of times each word is mentioned, creates a dictionary.
     count = 0
     UniqueWords = {i : 0 for i in array}
@@ -138,6 +236,7 @@ def FrequentWords(array):
         count = 0
         
     return sorted([(i, UniqueWords[i]) for i in UniqueWords], key = lambda x : x[1])
+    
     
 
 
@@ -160,8 +259,6 @@ def FrequencyGraph(frequency, graphfile, numwords = 20):
     -------
     None.
     
-    
-    todo : label graph 
     """
     
     x, y = zip(*frequency[-numwords:])
@@ -170,6 +267,8 @@ def FrequencyGraph(frequency, graphfile, numwords = 20):
     plt.margins(0.1)
     plt.subplots_adjust(bottom=0.15)
     plt.savefig(graphfile, bbox_inches='tight')
+    plt.xlabel("words")
+    plt.ylabel("words count")
     
     return None
     
@@ -196,21 +295,37 @@ def outputfrequencies(frequencies, freqfile, numwords = 100):
     None.
 
     """
-    df = pd.DataFrame(frequencies[-numwords:], columns = ["Words", "Frequencies"])
+    output = frequencies[::-1]
+    
+    df = pd.DataFrame(output[:numwords], columns = ["Words", "Frequencies"])
     df.to_csv(freqfile)
     
     return None
     
     
 def ProcessSpeach(text):
-    #Run each function above in order on each text, returns lemmatizatization of text
+    """
+    Runs all the previous functions so our main function is readable
+    
+    Parameters
+    ----------
+    text : String
+        Text of each speach.
+
+    Returns
+    -------
+    array : List
+        List of words that have gone through each function.
+
+    """
+    
     try:
         
         assert(type(text) == str)
         
     except AssertionError:
         
-        warnings.warn(f"Expecting a string, recieved {typer(text)} instead")
+        warnings.warn(f"Expecting a string, recieved {type(text)} instead")
         
         raise TypeError
     
@@ -226,10 +341,22 @@ def ProcessSpeach(text):
     
         
 def RunEnglishText(debug = False):
-    '''
+    """
     Run whole processing pipeline, Main function.
-    find most frequent words
-    '''
+    
+    Parameters
+    ----------
+    debug : Boolian
+        Used for testing the dataset so we dont run the whole text file every time.
+        The default is False.
+
+    Returns
+    -------
+    List
+        List of touples from the dataset.
+
+    """
+
     
     df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv', index_col = False, sep = ',')
     
