@@ -10,7 +10,7 @@ import warnings
 import sys
 from nltk.corpus import wordnet
 from nltk import pos_tag
-
+#sklearn tf term freq <<<<<
 
 def Lowercase(text):
     """
@@ -100,6 +100,7 @@ def MeaninglessWords(array):
         warnings.warn(f"Expecting a array, recieved {type(array)} instead")
         
         raise TypeError
+        
     #Removes meaningless words input string output string
     additional = ["also"]
     meaningless = stopwords.words('english') + additional
@@ -226,21 +227,14 @@ def FrequentWords(array):
         
         
     #Counts the amount of times each word is mentioned, creates a dictionary.
-    count = 0
     UniqueWords = {i : 0 for i in array}
-    for i in UniqueWords:
-        for j in array:
-            if i == j:
-                count += 1
-        UniqueWords[i] = count
-        count = 0
         
-    return sorted([(i, UniqueWords[i]) for i in UniqueWords], key = lambda x : x[1])
+    return sorted([(i, array.count(i)) for i in UniqueWords], key = lambda x : x[1])
     
     
+#, graphfile, numwords = 20
 
-
-def FrequencyGraph(frequency, graphfile, numwords = 20):
+def FrequencyGraph(frequency, numwords = 20):
     """
     Creates a frequency graph and saves it to a location.
     
@@ -266,7 +260,7 @@ def FrequencyGraph(frequency, graphfile, numwords = 20):
     plt.xticks(x, x, rotation='vertical')
     plt.margins(0.1)
     plt.subplots_adjust(bottom=0.15)
-    plt.savefig(graphfile, bbox_inches='tight')
+    #plt.savefig(graphfile, bbox_inches='tight')
     plt.xlabel("words")
     plt.ylabel("words count")
     
@@ -358,27 +352,35 @@ def RunEnglishText(debug = False):
     """
 
     
-    df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/original/english_corpus.csv', index_col = False, sep = ',')
+    df = pd.read_csv('/Users/bashir_a1/Desktop/Internship/nlp-islamist-discourse/data/created/english_with_date.csv', index_col = False, sep = ',')
     
     bagofwords = []
+    FrequencyDates = []
+    random = "1"
+    count = 1
+    
     for i, row in df.iterrows():
+        
         if i > 10 and debug == True:
             break
             
         
         if not pd.isna(row["Text"]):
+            if type(row["Date_of_Publication"]) == str:
+                FrequencyDates.append((row["Date_of_Publication"], ProcessSpeach(row["Text"]).count("lebanon")))
+            else:
+                FrequencyDates.append(("unknown" + random, ProcessSpeach(row["Text"]).count("lebanon")))
+                count += 1
+                random += str(count)
+                #dropna function pandas
+                #term freq over time
             
             bagofwords += ProcessSpeach(row["Text"])
             
+        
     
-    
-    
-    #print(FrequencyGraph(FrequentWords(bagofwords)[-20:]))
-            
-    
+    print(FrequencyGraph(FrequencyDates))
 
-    
-    return FrequentWords(bagofwords)
 
 
 RunEnglishText(debug = True)

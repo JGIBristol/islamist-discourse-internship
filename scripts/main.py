@@ -7,7 +7,7 @@ import englishprocessing
 
 starttime = time.time()
 
-frequencies = englishprocessing.RunEnglishText(debug = False)
+frequencies = englishprocessing.RunEnglishText(debug = True)
 
 englishprocessing.FrequencyGraph(frequencies, graphfile = "../fig/frequenciesgraph.png")
 
